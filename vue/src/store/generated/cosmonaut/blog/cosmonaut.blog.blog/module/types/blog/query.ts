@@ -6,6 +6,7 @@ import {
   PageResponse,
 } from "../cosmos/base/query/v1beta1/pagination";
 import { Post } from "../blog/post";
+import { Art } from "../blog/art";
 
 export const protobufPackage = "cosmonaut.blog.blog";
 
@@ -26,6 +27,18 @@ export interface QueryPostsRequest {
 export interface QueryPostsResponse {
   /** Returning a list of posts */
   Post: Post[];
+  /** Adding pagination to response */
+  pagination: PageResponse | undefined;
+}
+
+export interface QueryArtsRequest {
+  /** Adding pagination to request */
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryArtsResponse {
+  /** Returning a list of posts */
+  Art: Art[];
   /** Adding pagination to response */
   pagination: PageResponse | undefined;
 }
@@ -273,12 +286,157 @@ export const QueryPostsResponse = {
   },
 };
 
+const baseQueryArtsRequest: object = {};
+
+export const QueryArtsRequest = {
+  encode(message: QueryArtsRequest, writer: Writer = Writer.create()): Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryArtsRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryArtsRequest } as QueryArtsRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryArtsRequest {
+    const message = { ...baseQueryArtsRequest } as QueryArtsRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryArtsRequest): unknown {
+    const obj: any = {};
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination
+        ? PageRequest.toJSON(message.pagination)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryArtsRequest>): QueryArtsRequest {
+    const message = { ...baseQueryArtsRequest } as QueryArtsRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+};
+
+const baseQueryArtsResponse: object = {};
+
+export const QueryArtsResponse = {
+  encode(message: QueryArtsResponse, writer: Writer = Writer.create()): Writer {
+    for (const v of message.Art) {
+      Art.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(
+        message.pagination,
+        writer.uint32(18).fork()
+      ).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryArtsResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryArtsResponse } as QueryArtsResponse;
+    message.Art = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.Art.push(Art.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryArtsResponse {
+    const message = { ...baseQueryArtsResponse } as QueryArtsResponse;
+    message.Art = [];
+    if (object.Art !== undefined && object.Art !== null) {
+      for (const e of object.Art) {
+        message.Art.push(Art.fromJSON(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryArtsResponse): unknown {
+    const obj: any = {};
+    if (message.Art) {
+      obj.Art = message.Art.map((e) => (e ? Art.toJSON(e) : undefined));
+    } else {
+      obj.Art = [];
+    }
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination
+        ? PageResponse.toJSON(message.pagination)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryArtsResponse>): QueryArtsResponse {
+    const message = { ...baseQueryArtsResponse } as QueryArtsResponse;
+    message.Art = [];
+    if (object.Art !== undefined && object.Art !== null) {
+      for (const e of object.Art) {
+        message.Art.push(Art.fromPartial(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
   /** Queries a list of Posts items. */
   Posts(request: QueryPostsRequest): Promise<QueryPostsResponse>;
+  /** Queries a list of Arts items. */
+  Arts(request: QueryArtsRequest): Promise<QueryArtsResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -304,6 +462,12 @@ export class QueryClientImpl implements Query {
       data
     );
     return promise.then((data) => QueryPostsResponse.decode(new Reader(data)));
+  }
+
+  Arts(request: QueryArtsRequest): Promise<QueryArtsResponse> {
+    const data = QueryArtsRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmonaut.blog.blog.Query", "Arts", data);
+    return promise.then((data) => QueryArtsResponse.decode(new Reader(data)));
   }
 }
 

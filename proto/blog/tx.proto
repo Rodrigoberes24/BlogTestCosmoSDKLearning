@@ -8,6 +8,7 @@ option go_package = "github.com/cosmonaut/blog/x/blog/types";
 // Msg defines the Msg service.
 service Msg {
       rpc CreatePost(MsgCreatePost) returns (MsgCreatePostResponse);
+  rpc CreateArt(MsgCreateArt) returns (MsgCreateArtResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -20,5 +21,21 @@ message MsgCreatePost {
 message MsgCreatePostResponse {
   uint64 id = 1;
 }
+message MsgCreateArt {
+  string creator = 1;
+  string title = 2;
+  string body = 3;
+  string price = 4;
+  string oldArt = 5;
+  string authorArt = 6;
+  string authorSender = 7;
+  string published = 8;
+  string image = 9;
+}
+
+message MsgCreateArtResponse {
+  uint64 id = 1;
+}
+
 // this line is used by starport scaffolding # proto/tx/message
 

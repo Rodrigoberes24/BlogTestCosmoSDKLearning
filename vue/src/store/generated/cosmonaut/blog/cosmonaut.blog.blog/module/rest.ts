@@ -9,6 +9,26 @@
  * ---------------------------------------------------------------
  */
 
+export interface BlogArt {
+  creator?: string;
+
+  /** @format uint64 */
+  id?: string;
+  title?: string;
+  body?: string;
+  price?: string;
+  oldArt?: string;
+  authorArt?: string;
+  authorSender?: string;
+  published?: string;
+  image?: string;
+}
+
+export interface BlogMsgCreateArtResponse {
+  /** @format uint64 */
+  id?: string;
+}
+
 export interface BlogMsgCreatePostResponse {
   /** @format uint64 */
   id?: string;
@@ -26,6 +46,21 @@ export interface BlogPost {
   id?: string;
   title?: string;
   body?: string;
+}
+
+export interface BlogQueryArtsResponse {
+  Art?: BlogArt[];
+
+  /**
+   * PageResponse is to be embedded in gRPC response messages where the
+   * corresponding request message has used PageRequest.
+   *
+   *  message SomeResponse {
+   *          repeated Bar results = 1;
+   *          PageResponse page = 2;
+   *  }
+   */
+  pagination?: V1Beta1PageResponse;
 }
 
 /**
@@ -317,10 +352,36 @@ export class HttpClient<SecurityDataType = unknown> {
 }
 
 /**
- * @title blog/genesis.proto
+ * @title blog/art.proto
  * @version version not set
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryArts
+   * @summary Queries a list of Arts items.
+   * @request GET:/cosmonaut/blog/blog/arts
+   */
+  queryArts = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<BlogQueryArtsResponse, RpcStatus>({
+      path: `/cosmonaut/blog/blog/arts`,
+      method: "GET",
+      query: query,
+      format: "json",
+      ...params,
+    });
+
   /**
    * No description
    *

@@ -1,6 +1,7 @@
 syntax = "proto3";
 package cosmonaut.blog.blog;
 import "blog/post.proto";
+import "blog/art.proto";
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
@@ -19,6 +20,13 @@ service Query {
   // Queries a list of Posts items.
 	rpc Posts(QueryPostsRequest) returns (QueryPostsResponse) {
 		option (google.api.http).get = "/cosmonaut/blog/blog/posts";
+	}
+
+  
+
+// Queries a list of Arts items.
+	rpc Arts(QueryArtsRequest) returns (QueryArtsResponse) {
+		option (google.api.http).get = "/cosmonaut/blog/blog/arts";
 	}
 
 // this line is used by starport scaffolding # 2
@@ -43,4 +51,16 @@ message QueryPostsResponse {
   // Adding pagination to response
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
+message QueryArtsRequest {
+    // Adding pagination to request
+    cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryArtsResponse {
+   // Returning a list of posts
+   repeated Art Art = 1;
+   // Adding pagination to response
+   cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
 // this line is used by starport scaffolding # 3

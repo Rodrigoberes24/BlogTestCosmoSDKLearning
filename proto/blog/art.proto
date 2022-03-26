@@ -1,0 +1,17 @@
+syntax = "proto3";
+package cosmonaut.blog.blog;
+option go_package = "github.com/cosmonaut/blog/x/blog/types";
+
+message Art {
+  string creator = 1;
+  uint64 id = 2;
+  string title = 3; 
+  string body = 4; 
+  string price = 5; 
+  string oldArt = 6; 
+  string authorArt = 7; 
+  string authorSender = 8; 
+
+  string published = 9; 
+  string image = 10; 
+}

@@ -131,30 +131,192 @@ func (m *MsgCreatePostResponse) GetId() uint64 {
 	return 0
 }
 
+type MsgCreateArt struct {
+	Creator      string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Title        string `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Body         string `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
+	Price        string `protobuf:"bytes,4,opt,name=price,proto3" json:"price,omitempty"`
+	OldArt       string `protobuf:"bytes,5,opt,name=oldArt,proto3" json:"oldArt,omitempty"`
+	AuthorArt    string `protobuf:"bytes,6,opt,name=authorArt,proto3" json:"authorArt,omitempty"`
+	AuthorSender string `protobuf:"bytes,7,opt,name=authorSender,proto3" json:"authorSender,omitempty"`
+	Published    string `protobuf:"bytes,8,opt,name=published,proto3" json:"published,omitempty"`
+	Image        string `protobuf:"bytes,9,opt,name=image,proto3" json:"image,omitempty"`
+}
+
+func (m *MsgCreateArt) Reset()         { *m = MsgCreateArt{} }
+func (m *MsgCreateArt) String() string { return proto.CompactTextString(m) }
+func (*MsgCreateArt) ProtoMessage()    {}
+func (*MsgCreateArt) Descriptor() ([]byte, []int) {
+	return fileDescriptor_90382f40c04acbba, []int{2}
+}
+func (m *MsgCreateArt) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgCreateArt) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgCreateArt.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgCreateArt) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgCreateArt.Merge(m, src)
+}
+func (m *MsgCreateArt) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgCreateArt) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgCreateArt.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgCreateArt proto.InternalMessageInfo
+
+func (m *MsgCreateArt) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgCreateArt) GetTitle() string {
+	if m != nil {
+		return m.Title
+	}
+	return ""
+}
+
+func (m *MsgCreateArt) GetBody() string {
+	if m != nil {
+		return m.Body
+	}
+	return ""
+}
+
+func (m *MsgCreateArt) GetPrice() string {
+	if m != nil {
+		return m.Price
+	}
+	return ""
+}
+
+func (m *MsgCreateArt) GetOldArt() string {
+	if m != nil {
+		return m.OldArt
+	}
+	return ""
+}
+
+func (m *MsgCreateArt) GetAuthorArt() string {
+	if m != nil {
+		return m.AuthorArt
+	}
+	return ""
+}
+
+func (m *MsgCreateArt) GetAuthorSender() string {
+	if m != nil {
+		return m.AuthorSender
+	}
+	return ""
+}
+
+func (m *MsgCreateArt) GetPublished() string {
+	if m != nil {
+		return m.Published
+	}
+	return ""
+}
+
+func (m *MsgCreateArt) GetImage() string {
+	if m != nil {
+		return m.Image
+	}
+	return ""
+}
+
+type MsgCreateArtResponse struct {
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (m *MsgCreateArtResponse) Reset()         { *m = MsgCreateArtResponse{} }
+func (m *MsgCreateArtResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgCreateArtResponse) ProtoMessage()    {}
+func (*MsgCreateArtResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_90382f40c04acbba, []int{3}
+}
+func (m *MsgCreateArtResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgCreateArtResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgCreateArtResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgCreateArtResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgCreateArtResponse.Merge(m, src)
+}
+func (m *MsgCreateArtResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgCreateArtResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgCreateArtResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgCreateArtResponse proto.InternalMessageInfo
+
+func (m *MsgCreateArtResponse) GetId() uint64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*MsgCreatePost)(nil), "cosmonaut.blog.blog.MsgCreatePost")
 	proto.RegisterType((*MsgCreatePostResponse)(nil), "cosmonaut.blog.blog.MsgCreatePostResponse")
+	proto.RegisterType((*MsgCreateArt)(nil), "cosmonaut.blog.blog.MsgCreateArt")
+	proto.RegisterType((*MsgCreateArtResponse)(nil), "cosmonaut.blog.blog.MsgCreateArtResponse")
 }
 
 func init() { proto.RegisterFile("blog/tx.proto", fileDescriptor_90382f40c04acbba) }
 
 var fileDescriptor_90382f40c04acbba = []byte{
-	// 231 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4d, 0xca, 0xc9, 0x4f,
-	0xd7, 0x2f, 0xa9, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x12, 0x4e, 0xce, 0x2f, 0xce, 0xcd,
-	0xcf, 0x4b, 0x2c, 0x2d, 0xd1, 0x03, 0x49, 0x80, 0x09, 0xa5, 0x60, 0x2e, 0x5e, 0xdf, 0xe2, 0x74,
-	0xe7, 0xa2, 0xd4, 0xc4, 0x92, 0xd4, 0x80, 0xfc, 0xe2, 0x12, 0x21, 0x09, 0x2e, 0xf6, 0x64, 0x10,
-	0x2f, 0xbf, 0x48, 0x82, 0x51, 0x81, 0x51, 0x83, 0x33, 0x08, 0xc6, 0x15, 0x12, 0xe1, 0x62, 0x2d,
-	0xc9, 0x2c, 0xc9, 0x49, 0x95, 0x60, 0x02, 0x8b, 0x43, 0x38, 0x42, 0x42, 0x5c, 0x2c, 0x49, 0xf9,
-	0x29, 0x95, 0x12, 0xcc, 0x60, 0x41, 0x30, 0x5b, 0x49, 0x9d, 0x4b, 0x14, 0xc5, 0xd0, 0xa0, 0xd4,
-	0xe2, 0x82, 0xfc, 0xbc, 0xe2, 0x54, 0x21, 0x3e, 0x2e, 0xa6, 0xcc, 0x14, 0xb0, 0xb9, 0x2c, 0x41,
-	0x4c, 0x99, 0x29, 0x46, 0xc9, 0x5c, 0xcc, 0xbe, 0xc5, 0xe9, 0x42, 0x31, 0x5c, 0x5c, 0x48, 0x2e,
-	0x50, 0xd2, 0xc3, 0xe2, 0x50, 0x3d, 0x14, 0x03, 0xa5, 0xb4, 0x08, 0xab, 0x81, 0x59, 0xea, 0xe4,
-	0x70, 0xe2, 0x91, 0x1c, 0xe3, 0x85, 0x47, 0x72, 0x8c, 0x0f, 0x1e, 0xc9, 0x31, 0x4e, 0x78, 0x2c,
-	0xc7, 0x70, 0xe1, 0xb1, 0x1c, 0xc3, 0x8d, 0xc7, 0x72, 0x0c, 0x51, 0x6a, 0xe9, 0x99, 0x25, 0x19,
-	0xa5, 0x49, 0x7a, 0xc9, 0xf9, 0xb9, 0xfa, 0x70, 0xf3, 0xf4, 0xc1, 0xa1, 0x56, 0x01, 0xa1, 0x4a,
-	0x2a, 0x0b, 0x52, 0x8b, 0x93, 0xd8, 0xc0, 0x01, 0x68, 0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0xda,
-	0xbf, 0x4a, 0x10, 0x51, 0x01, 0x00, 0x00,
+	// 357 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x52, 0xbb, 0x4e, 0xeb, 0x40,
+	0x10, 0xcd, 0xe6, 0x79, 0x3d, 0x4a, 0x6e, 0xb1, 0x04, 0xb4, 0x8a, 0x90, 0x05, 0x2e, 0xc2, 0xa3,
+	0x70, 0x24, 0xf8, 0x01, 0x02, 0x75, 0x24, 0x94, 0x54, 0x20, 0x1a, 0x3f, 0x56, 0xce, 0x4a, 0x4e,
+	0xd6, 0xda, 0x5d, 0x4b, 0xc9, 0x5f, 0xf0, 0x45, 0xd4, 0x94, 0x29, 0x29, 0x51, 0xf2, 0x0f, 0xd4,
+	0xc8, 0x63, 0xe2, 0x24, 0x12, 0x90, 0x86, 0xc6, 0xde, 0x73, 0xe6, 0xec, 0x99, 0xd9, 0x99, 0x81,
+	0x96, 0x1f, 0xcb, 0xa8, 0x67, 0x66, 0x6e, 0xa2, 0xa4, 0x91, 0xf4, 0x20, 0x90, 0x7a, 0x22, 0xa7,
+	0x5e, 0x6a, 0xdc, 0x2c, 0x80, 0x1f, 0x67, 0x04, 0xad, 0x81, 0x8e, 0xee, 0x14, 0xf7, 0x0c, 0xbf,
+	0x97, 0xda, 0x50, 0x06, 0x8d, 0x20, 0x43, 0x52, 0x31, 0x72, 0x42, 0xce, 0xad, 0xe1, 0x1a, 0xd2,
+	0x36, 0xd4, 0x8c, 0x30, 0x31, 0x67, 0x65, 0xe4, 0x73, 0x40, 0x29, 0x54, 0x7d, 0x19, 0xce, 0x59,
+	0x05, 0x49, 0x3c, 0x3b, 0x67, 0x70, 0xb8, 0x63, 0x3a, 0xe4, 0x3a, 0x91, 0x53, 0xcd, 0xe9, 0x7f,
+	0x28, 0x8b, 0x10, 0x7d, 0xab, 0xc3, 0xb2, 0x08, 0x9d, 0x0f, 0x02, 0xcd, 0x42, 0xd9, 0x57, 0x7f,
+	0x92, 0x3d, 0x53, 0x26, 0x4a, 0x04, 0x9c, 0x55, 0x73, 0x25, 0x02, 0x7a, 0x04, 0x75, 0x19, 0x87,
+	0x7d, 0x65, 0x58, 0x0d, 0xe9, 0x2f, 0x44, 0x8f, 0xc1, 0xf2, 0x52, 0x33, 0x96, 0x2a, 0x0b, 0xd5,
+	0x31, 0xb4, 0x21, 0xa8, 0x03, 0xcd, 0x1c, 0x8c, 0xf8, 0x34, 0xe4, 0x8a, 0x35, 0x50, 0xb0, 0xc3,
+	0x65, 0x0e, 0x49, 0xea, 0xc7, 0x42, 0x8f, 0x79, 0xc8, 0xfe, 0xe5, 0x0e, 0x05, 0x91, 0x55, 0x23,
+	0x26, 0x5e, 0xc4, 0x99, 0x95, 0x57, 0x83, 0xc0, 0xe9, 0x42, 0x7b, 0xfb, 0xdd, 0x3f, 0x35, 0xe8,
+	0xea, 0x85, 0x40, 0x65, 0xa0, 0x23, 0xfa, 0x04, 0xb0, 0x35, 0x23, 0xc7, 0xfd, 0x66, 0x94, 0xee,
+	0x4e, 0xcb, 0x3b, 0x97, 0xfb, 0x35, 0x45, 0xd6, 0x07, 0xb0, 0x36, 0x23, 0x38, 0xfd, 0xfd, 0x62,
+	0x5f, 0x99, 0xce, 0xc5, 0x5e, 0xc9, 0xda, 0xfa, 0xf6, 0xe6, 0x75, 0x69, 0x93, 0xc5, 0xd2, 0x26,
+	0xef, 0x4b, 0x9b, 0x3c, 0xaf, 0xec, 0xd2, 0x62, 0x65, 0x97, 0xde, 0x56, 0x76, 0xe9, 0xb1, 0x1b,
+	0x09, 0x33, 0x4e, 0x7d, 0x37, 0x90, 0x93, 0x5e, 0x61, 0xd7, 0xc3, 0x95, 0x9d, 0xe5, 0x3f, 0x33,
+	0x4f, 0xb8, 0xf6, 0xeb, 0xb8, 0xbd, 0xd7, 0x9f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x3a, 0x31, 0xc0,
+	0x4b, 0xce, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -170,6 +332,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MsgClient interface {
 	CreatePost(ctx context.Context, in *MsgCreatePost, opts ...grpc.CallOption) (*MsgCreatePostResponse, error)
+	CreateArt(ctx context.Context, in *MsgCreateArt, opts ...grpc.CallOption) (*MsgCreateArtResponse, error)
 }
 
 type msgClient struct {
@@ -189,9 +352,19 @@ func (c *msgClient) CreatePost(ctx context.Context, in *MsgCreatePost, opts ...g
 	return out, nil
 }
 
+func (c *msgClient) CreateArt(ctx context.Context, in *MsgCreateArt, opts ...grpc.CallOption) (*MsgCreateArtResponse, error) {
+	out := new(MsgCreateArtResponse)
+	err := c.cc.Invoke(ctx, "/cosmonaut.blog.blog.Msg/CreateArt", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	CreatePost(context.Context, *MsgCreatePost) (*MsgCreatePostResponse, error)
+	CreateArt(context.Context, *MsgCreateArt) (*MsgCreateArtResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -200,6 +373,9 @@ type UnimplementedMsgServer struct {
 
 func (*UnimplementedMsgServer) CreatePost(ctx context.Context, req *MsgCreatePost) (*MsgCreatePostResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePost not implemented")
+}
+func (*UnimplementedMsgServer) CreateArt(ctx context.Context, req *MsgCreateArt) (*MsgCreateArtResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateArt not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -224,6 +400,24 @@ func _Msg_CreatePost_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateArt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateArt)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateArt(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cosmonaut.blog.blog.Msg/CreateArt",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateArt(ctx, req.(*MsgCreateArt))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "cosmonaut.blog.blog.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -231,6 +425,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreatePost",
 			Handler:    _Msg_CreatePost_Handler,
+		},
+		{
+			MethodName: "CreateArt",
+			Handler:    _Msg_CreateArt_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -309,6 +507,120 @@ func (m *MsgCreatePostResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgCreateArt) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgCreateArt) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgCreateArt) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Image) > 0 {
+		i -= len(m.Image)
+		copy(dAtA[i:], m.Image)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Image)))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if len(m.Published) > 0 {
+		i -= len(m.Published)
+		copy(dAtA[i:], m.Published)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Published)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.AuthorSender) > 0 {
+		i -= len(m.AuthorSender)
+		copy(dAtA[i:], m.AuthorSender)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.AuthorSender)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.AuthorArt) > 0 {
+		i -= len(m.AuthorArt)
+		copy(dAtA[i:], m.AuthorArt)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.AuthorArt)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.OldArt) > 0 {
+		i -= len(m.OldArt)
+		copy(dAtA[i:], m.OldArt)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.OldArt)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Price) > 0 {
+		i -= len(m.Price)
+		copy(dAtA[i:], m.Price)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Price)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Body) > 0 {
+		i -= len(m.Body)
+		copy(dAtA[i:], m.Body)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Body)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Title) > 0 {
+		i -= len(m.Title)
+		copy(dAtA[i:], m.Title)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Title)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgCreateArtResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgCreateArtResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgCreateArtResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Id != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -342,6 +654,63 @@ func (m *MsgCreatePost) Size() (n int) {
 }
 
 func (m *MsgCreatePostResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Id != 0 {
+		n += 1 + sovTx(uint64(m.Id))
+	}
+	return n
+}
+
+func (m *MsgCreateArt) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Title)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Body)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Price)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.OldArt)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.AuthorArt)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.AuthorSender)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Published)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Image)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgCreateArtResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -532,6 +901,413 @@ func (m *MsgCreatePostResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgCreatePostResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgCreateArt) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgCreateArt: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgCreateArt: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Title", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Title = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Body", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Body = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Price", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Price = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OldArt", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OldArt = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AuthorArt", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.AuthorArt = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AuthorSender", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.AuthorSender = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Published", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Published = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Image", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Image = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgCreateArtResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgCreateArtResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgCreateArtResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
